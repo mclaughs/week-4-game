@@ -1,35 +1,26 @@
-$(document).ready(function() {
+//GENERATE AND DISPLAY A RANDOM TARGET VALUE TO BEGIN THE GAME; IT HAS TO BE BETWEEN 19 AND 120.
 
-  var random = 0;
-  var randomTarget = 0;
-  var values = [0, 0, 0, 0];
-  var counter = 0;
-  var crysValue = " ";
-  var wins = 0;
-  var losses = 0;
+function genRandom() {
 
-  //GENERATE AND DISPLAY A RANDOM TARGET VALUE TO BEGIN THE GAME; IT HAS TO BE BETWEEN 19 AND 120.
-
-  function genRandom() {
-
-    random = Math.ceil(120 * Math.random());
-	  return random;  // This did not work until I added the
+  var random = Math.ceil(120 * Math.random());
+	return random;  // This did not work until I added the
 									// return statement.  Why?  I always
 									// thought it was implied?
-    }
+}
 
-    do {
-	    genRandom();
-      randomTarget = genRandom();
-      console.log(randomTarget);
-    }
+var randomTarget = 0;
 
-    while (randomTarget < 19  || randomTarget > 120);
-    $("#targetNum").html(randomTarget);
+do {
+	genRandom();
+  randomTarget = genRandom();
+	console.log(randomTarget);
+}
+while (randomTarget < 19  || randomTarget > 120);
+$("#targetNum").html(randomTarget);
 
 //DISPLAY FOUR CRYSTALS EACH ONE WITH A HIDDEN INDIVIDUAL VALUE ASSIGNED FOR THAT PARTICULAR GAME.
 
-  values = [Math.ceil(12*Math.random()), Math.ceil(12*Math.random()), Math.ceil(12*Math.random()), Math.ceil(12*Math.random())];
+var values = [Math.ceil(12*Math.random()), Math.ceil(12*Math.random()), Math.ceil(12*Math.random()), Math.ceil(12*Math.random())];
 
   //These are the file paths to the crystal images from index.html.
 
@@ -50,8 +41,10 @@ for (var i = 0; i < crystals.length; i++) {
 
 //ACCUMULATE POINTS UP TO THE RANDOM TARGET VALUE BY CLICKING ON THE CRYSTALS.
 
+var counter = 0;
+
 $(document).on("click", ".crystals", function() {
-  crysValue = $(this).attr("data-value");
+  var crysValue = $(this).attr("data-value");
   counter += parseInt(crysValue);
   console.log(counter);
 
@@ -60,26 +53,6 @@ $(document).on("click", ".crystals", function() {
 })
 
 //IF ACCUMULATED POINTS MATCH RANDOM VALUE, CREDIT USER WITH A WIN AND INCREMENT WIN SCORE. IF ACCUMULATED POINTS EXCEED RANDOM VALUE, USER LOSES AND LOSS SCORE IS INCREMENTED.
-
-function winFunction() {
-  alert("You won the game!");
-  wins++;
-  $("#winTot").text(wins);
-}
-
-function lossFunction() {
-  alert("You lost the game!")
-  losses++;
-  $("#lossTot").text(losses);
-}
-
-function resetFunction() {
-  random = 0;
-  randomTarget = 0;
-  values = [0, 0, 0, 0];
-  counter = 0;
-  crysValue = " ";
-}
 
 if (counter === randomTarget) {
   winFunction();
@@ -93,4 +66,3 @@ else if (counter > randomTarget) {
 else {
     console.log(counter + " " + randomTarget + " Game continues.");
 }
-});
