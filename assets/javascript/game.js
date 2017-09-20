@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  //DECLARE VARIABLES
+
   var random = 0;
   var randomTarget = 0;
   var values = [0, 0, 0, 0];
@@ -9,9 +11,9 @@ $(document).ready(function() {
   var wins = 0;
   var losses = 0;
 
-  //GENERATE AND DISPLAY A RANDOM TARGET VALUE TO BEGIN THE GAME; IT HAS TO BE BETWEEN 19 AND 120.
-
 function start() {
+
+  //AT GAME START GENERATE AND DISPLAY A RANDOM TARGET VALUE TO BEGIN THE GAME; IT HAS TO BE BETWEEN 19 AND 120.
 
   function genRandom() {
 
@@ -30,11 +32,11 @@ function start() {
     while (randomTarget < 19  || randomTarget > 120);
     $("#targetNum").html(randomTarget);
 
-//DISPLAY FOUR CRYSTALS EACH ONE WITH A HIDDEN INDIVIDUAL VALUE ASSIGNED FOR THAT PARTICULAR GAME.
+    //DISPLAY FOUR CRYSTALS EACH ONE WITH A HIDDEN INDIVIDUAL VALUE ASSIGNED FOR THAT PARTICULAR GAME.
 
     values = [Math.ceil(12*Math.random()), Math.ceil(12*Math.random()), Math.ceil(12*Math.random()), Math.ceil(12*Math.random())];
 
-  //These are the file paths to the crystal images from index.html.
+    //These are the file paths to the crystal images from index.html.
 
     crystals = ["assets/images/crystal1.png","assets/images/crystal2.png","assets/images/crystal3.png","assets/images/crystal4.png"];
 
@@ -53,7 +55,6 @@ function start() {
 }
 
 start();
-
 
 //ACCUMULATE POINTS UP TO THE RANDOM TARGET VALUE BY CLICKING ON THE CRYSTALS.
 
@@ -76,8 +77,8 @@ function reset() {
   crystals = []; //write a loop to delete each element.
   counter = 0;
   crysValue = " ";
-  wins = 0;
-  losses = 0;
+  $("#display").empty();
+  $("#lossTot").empty();
   start();
 }
 
