@@ -78,7 +78,7 @@ function reset() {
   counter = 0;
   crysValue = " ";
   $("#display").empty();
-  $("#lossTot").empty();
+  $("#pointAccum").empty();
   start();
 }
 
